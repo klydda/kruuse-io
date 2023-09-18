@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kruuse.io</title>
-    <link rel="stylesheet" href="resources/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bangers&family=Bungee+Outline&family=Monoton&family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&family=Permanent+Marker&family=Rubik+Moonrocks&family=Shrikhand&display=swap" rel="stylesheet">
 
 </head>
 <body>
-    <main class="">
-        <h1 class="">KRUUSE</h1>
+   
+    <main id ="logo-container" class="border-help">
+        <h1 id="logo-1" class="border-help">KRUUSE</h1>
+        <h1 id="logo-2" class="color-anim">KRUUSE</h1>
     </main>
+    <script id="logo-anim" src="resources/scripts/logo.js" async></script>
 
     <nav class="">
         <ul class="">
@@ -20,6 +23,12 @@
             <li class="main-nav-item "><a href="#">Help</a></li>
         </ul>
     </nav>
-    
+
+    <p class="dev-tool">Mousepos: <span id="mousepos" class="color-anim"></span></p>
+    <p class="dev-tool">RGB: <span id="rgb-text"></span></p>
+    <p class="color-anim dev-tool">Screen Width: <span id="screen-width"></span></p>
+    <p class="dev-tool">Screen Height: <span id="screen-height"></span></p>
+    <p class="dev-tool">colorConfig: <span id="color-config"></span></p>
+
 </body>
 </html>
