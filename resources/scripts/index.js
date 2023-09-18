@@ -3,6 +3,8 @@ const logo2 = document.getElementById('logo-2');
 const dots = []; //Array of dot objects
 const dotElements = []; //Array of dotElements as divs
 const numOfDots = 10;
+const nav = ['projects', 'about', 'contact'];
+const navElements = [];
 
 let windowWidth = window.innerWidth;
 let windowHeight= window.innerHeight;
@@ -33,7 +35,7 @@ function setWindowSize(){
 }
 
 //-------------------------
-// CODE FOR DOTS
+// CODE FOR ADDING DOTS
 //-------------------------
 
 //Factory function for dots
@@ -98,27 +100,6 @@ function updateDots(){
     drawDots(dots);
 };
 
-
-//NOT BEING USED ATM. Colors each dot based on it's position instead of based on mouse position.
-function colorElement(elem){
-    let rect = elem.getBoundingClientRect();
-    let elementCoordWidth = (rect.x + (rect.width / 2)); //Sets elementCoordWidth to the center coordinate of the element's x axis
-    let elementCoordHeight = (rect.y + (rect.height/2)); //Sets elementCoordHeight to the center coordinate of the element's y axis
-    let elementColorWidth = Math.floor(elementCoordWidth / rgbWidthRatio); //Calculates rgbValue based on coord and assigns the result to elementColorWidth
-    let elementColorHeight = Math.floor(elementCoordHeight / rgbHeightRatio); //Calculates rgbValue based on coord and assigns the result to elementColorHeight
-    
-    switch (colorConfig){
-        case 0:
-            return `rgb(${elementColorWidth}, ${elementColorHeight}, 56)`;
-        case 1:
-            return `rgb(56, ${elementColorWidth}, ${elementColorHeight})`;
-        case 2:
-            return `rgb(${elementColorHeight}, 56, ${elementColorWidth})`;
-        default:
-            return `rgb(${elementColorWidth}, ${elementColorHeight}, 56)`;            
-    }
-}
-
 //-------------------------
 // CODE FOR COLOR ANIMATION
 // -------------------------
@@ -155,9 +136,41 @@ function updateColorConfig(){
     dotElements.forEach((elem) => {
         elem.style.backgroundColor = mousePosToRgb(elem);
     });
-
 }
 
+//Populates navElements array with all elements in nav array (which in turn is populated with id's corresponding to <li>'s in the <nav>)
+nav.forEach((id) => {
+    navElements.push(document.getElementById(id));
+});
+
+//Event assigment function. Assigns 3 Event Listeners to all elems it's used
+function eventAssignment(elem){
+    elem.addEventListener('mousedown', () => {
+        intervalID = setInterval(() => {
+            linkClickColor();
+        }, 1)
+    });
+
+    elem.addEventListener('mouseup', stopLinkClickColor);
+    elem.addEventListener('mouseout', stopLinkClickColor);
+}
+
+navElements.forEach(eventAssignment);
+
+
+function linkClickColor(){
+    dotElements.forEach((elem) => {
+        elem.style.backgroundColor = 'rgb(255, 100, 160)';
+    });
+
+    colorAnimTargets.forEach((elem) => {
+        elem.style.color = 'rgb(255, 100, 160)';
+    })
+}
+
+function stopLinkClickColor(){
+    clearInterval(intervalID);
+}
 
 
 //Function for updating color of colorAnimTargets based on mouseX and mouseY position
