@@ -59,8 +59,8 @@ ul {
 }
 
 .dev-tool{
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
 }
 
 #logo-1 {
