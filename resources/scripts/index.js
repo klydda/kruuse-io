@@ -5,6 +5,7 @@ const dotElements = []; //Array of dotElements as divs
 const numOfDots = 10;
 const nav = ['projects', 'about', 'contact'];
 const navElements = [];
+const mainContainer = document.getElementById('main-container');
 
 let windowWidth = window.innerWidth;
 let windowHeight= window.innerHeight;
@@ -62,7 +63,7 @@ function makeDots(num){
 function drawDots(arr){
     for (let i = 0; i < arr.length; i++){
         dotElements[i] = document.createElement('div');
-        const main = document.getElementById('logo-container');
+        const main = document.getElementById('main-container');
         document.body.insertBefore(dotElements[i], main);
 
         dotElements[i].setAttribute('id', i);
@@ -75,6 +76,7 @@ function drawDots(arr){
         dotElements[i].style.width = `${dots[i].size}px`;
         dotElements[i].style.height = `${dots[i].size}px`;
         dotElements[i].style.borderRadius = `${dots[i].size/2}px`;
+        dotElements[i].style.zIndex = '1';
     }
 }
 
@@ -151,6 +153,7 @@ function eventAssignment(elem){
         }, 1)
     });
 
+    elem.addEventListener('mouseup', moveMainContainer);
     elem.addEventListener('mouseup', stopLinkClickColor);
     elem.addEventListener('mouseout', stopLinkClickColor);
 }
@@ -192,3 +195,14 @@ function mousePosToRgb(elem){
     }
 }
 
+
+//-------------------------
+// CODE FOR LOGO MOVEMENT
+// ------------------------
+
+function moveMainContainer(){
+    document.querySelector('body').style.justifyContent = 'flex-start';
+    document.body.style.marginTop = '2rem';
+    // mainContainer.style.top = '2rem';
+    // mainContainer.style.transform = 'none';
+}
