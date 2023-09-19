@@ -227,7 +227,7 @@ contact.addEventListener('mouseup', contactAppear);
 function projectsAppear(){
     //Changes display property from none to a visible one
     contentContainer.style.display = 'flex';
-    projectsSection.style.display = 'block';
+    projectsSection.style.display = 'flex';
 
     //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
     setTimeout(() => {
@@ -243,7 +243,7 @@ function projectsAppear(){
 function aboutAppear(){
     //Changes display property from none to a visible one
     contentContainer.style.display = 'flex';
-    aboutSection.style.display = 'block';
+    aboutSection.style.display = 'flex';
 
     //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
     setTimeout(() => {
@@ -259,7 +259,7 @@ function aboutAppear(){
 function contactAppear(){
     //Changes display property from none to a visible one
     contentContainer.style.display = 'flex';
-    contactSection.style.display = 'block';
+    contactSection.style.display = 'flex';
 
     //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
     setTimeout(() => {

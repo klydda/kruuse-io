@@ -70,16 +70,12 @@ ul {
     margin: 0 0.5rem;
 }
 
-.border-help {
-    /* border: solid 1px red; */
-}
-
 #dev-tool{
     position: absolute;
     top: 1rem;
     left: 0.5rem;
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
 }
 
 #logo-1 {
@@ -98,14 +94,17 @@ ul {
 #content-container {
     display: none;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: justify;
     position: relative;
-    padding-left: 2rem;
     z-index: 10;
     background-color: rgba(64, 85, 104, 90%);
     width: 60%;
     border-radius: 1rem;
-    
+    padding: 2rem;
+}
+
+#content-container a {
+    color: #ABCBC8;
 }
 
 #projects-section {
@@ -120,8 +119,20 @@ ul {
     display: none;
 }
 
-.content-area h2 {
-    display: block;
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card .image {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.card li {
+    list-style-type: none;
 }
 
 .fade-in {
@@ -132,3 +143,28 @@ ul {
 .fade-in.visible {
     opacity: 1;
 }
+
+.emoji{
+    width: 2rem;
+    height: auto;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin: 0 0 1rem 0;
+}
+
+.section-header-description {
+    margin-left: 1rem;
+}
+
+#about-me-text {
+    margin-left: 2rem;
+    width: 70%;
+}
+
+#picture-of-me {
+    width: 30%;
+}
+
