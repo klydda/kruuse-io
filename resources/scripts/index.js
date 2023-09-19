@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function() {
 const kruuse = document.getElementById('logo-1');
 const logo2 = document.getElementById('logo-2');
 const dots = []; //Array of dot objects
@@ -201,8 +202,8 @@ function mousePosToRgb(elem){
 // ------------------------
 
 function moveMainContainer(){
-    document.querySelector('body').style.justifyContent = 'flex-start';
-    document.body.style.marginTop = '2rem';
+    mainContainer.style.marginTop = '2rem';
     // mainContainer.style.top = '2rem';
     // mainContainer.style.transform = 'none';
 }
+});
