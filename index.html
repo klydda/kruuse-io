@@ -11,23 +11,43 @@
     
 </head>
 <body>
-   <div id="main-container">
-    <main id ="logo-container" class="border-help">
-        <h1 id="logo-1" class="border-help">KRUUSE</h1>
-        <h1 id="logo-2" class="color-anim">KRUUSE</h1>
-    </main>
+    <div id="click-target"></div>
+
+    <div id="main-container">
+        <main id ="logo-container" class="border-help">
+            <h1 id="logo-1" class="border-help">KRUUSE</h1>
+            <h1 id="logo-2" class="color-anim">KRUUSE</h1>
+        </main>
 
 
-    <nav class="">
-        <ul id="nav-ul">
-            <li id="projects" class="main-nav-item "><a href="#">Projects</a></li>
-            <li id="about" class="main-nav-item "><a href="#">About</a></li>
-            <li id="contact" class="main-nav-item "><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+        <nav class="">
+            <ul id="nav-ul">
+                <li id="about" class="main-nav-item "><a href="#">About</a></li>
+                <li id="projects" class="main-nav-item "><a href="#">Projects</a></li>
+                <li id="contact" class="main-nav-item "><a href="#">Contact</a></li>
+            </ul>
+        </nav>
    </div>
 
+   <section id="content-container" class="fade-in">
+        <section id="projects-section" class="content-area fade-in">
+            <h2>Projects</h2>
+            <p>Lorem ipsu skit en schitzo</p>
+    </section>
+    
+        <section id="about-section" class="content-area fade-in">
+            <h2>About</h2>
+            <p>Lorem ipsu skit en schitzo</p>
+        </section>
 
+        <section id="contact-section" class="content-area fade-in">
+            <h2>Contact</h2>
+            <p>Lorem ipsu skit en schitzo</p>
+        </section>
+   </section>
+
+
+<div id="dev-tool">
     <p class="dev-tool">Mousepos: <span id="mousepos" class="color-anim"></span></p>
     <p class="dev-tool">RGB: <span id="rgb-text"></span></p>
     <p class="color-anim dev-tool">Screen Width: <span id="screen-width"></span></p>
@@ -35,6 +55,9 @@
     <p class="dev-tool">colorConfig: <span id="color-config"></span></p>
     <p class="dev-tool">rect: <span id="rect"></span></p>
     <p class="dev-tool">Interval: <span id="interval"></span></p>
+    <p class="dev-tool">elem.id: <span id="elemId"></span></p>
+</div>
+
 
 </body>
 </html>

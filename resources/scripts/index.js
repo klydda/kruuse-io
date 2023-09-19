@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
 const kruuse = document.getElementById('logo-1');
 const logo2 = document.getElementById('logo-2');
 const dots = []; //Array of dot objects
@@ -7,6 +6,7 @@ const numOfDots = 10;
 const nav = ['projects', 'about', 'contact'];
 const navElements = [];
 const mainContainer = document.getElementById('main-container');
+const clickTarget = document.getElementById('click-target');
 
 let windowWidth = window.innerWidth;
 let windowHeight= window.innerHeight;
@@ -85,7 +85,7 @@ makeDots(numOfDots);
 drawDots(dots);
 
 //Event listener that calls updateDots on click
-document.addEventListener('click', updateDots);
+clickTarget.addEventListener('click', updateDots);
 
 //Removes existing dots, clears dot arrays, draws new dots
 function updateDots(){
@@ -124,7 +124,7 @@ document.addEventListener('mousemove', (event) => {
     });
 });
 
-document.addEventListener('click', updateColorConfig);
+clickTarget.addEventListener('click', updateColorConfig);
 
 function updateColorConfig(){
     colorConfig = Math.floor(Math.random() * 3);
@@ -146,7 +146,7 @@ nav.forEach((id) => {
     navElements.push(document.getElementById(id));
 });
 
-//Event assigment function. Assigns 3 Event Listeners to all elems it's used
+//Event assigment function. Assigns 4 Event Listeners to all elems it's used
 function eventAssignment(elem){
     elem.addEventListener('mousedown', () => {
         intervalID = setInterval(() => {
@@ -206,4 +206,68 @@ function moveMainContainer(){
     // mainContainer.style.top = '2rem';
     // mainContainer.style.transform = 'none';
 }
-});
+
+
+//-------------------------
+// CODE FOR CONTENT AREAS
+// ------------------------
+
+const projects = document.getElementById('projects');
+const about = document.getElementById('about');
+const contact = document.getElementById('contact');
+const projectsSection = document.getElementById('projects-section');
+const aboutSection = document.getElementById('about-section');
+const contactSection = document.getElementById('contact-section');
+const contentContainer = document.getElementById('content-container');
+
+projects.addEventListener('mouseup', projectsAppear);
+about.addEventListener('mouseup', aboutAppear);
+contact.addEventListener('mouseup', contactAppear);
+
+function projectsAppear(){
+    //Changes display property from none to a visible one
+    contentContainer.style.display = 'flex';
+    projectsSection.style.display = 'block';
+
+    //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
+    setTimeout(() => {
+        contentContainer.classList.add('visible');
+        projectsSection.classList.add('visible');
+    }, 5);
+
+    //Sets the other content-areas display properties to none
+    aboutSection.style.display = 'none';
+    contactSection.style.display = 'none';
+}
+
+function aboutAppear(){
+    //Changes display property from none to a visible one
+    contentContainer.style.display = 'flex';
+    aboutSection.style.display = 'block';
+
+    //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
+    setTimeout(() => {
+        contentContainer.classList.add('visible');
+        aboutSection.classList.add('visible');
+    }, 5);
+
+    //Sets the other content-areas display properties to none
+    projectsSection.style.display = 'none';
+    contactSection.style.display = 'none';
+}
+
+function contactAppear(){
+    //Changes display property from none to a visible one
+    contentContainer.style.display = 'flex';
+    contactSection.style.display = 'block';
+
+    //Waits 5ms to ensure that the display properties have been set to visible ones before maniuplating the opacity
+    setTimeout(() => {
+        contentContainer.classList.add('visible');
+        contactSection.classList.add('visible');
+    }, 5);
+
+    //Sets the other content-areas display properties to none
+    projectsSection.style.display = 'none';
+    aboutSection.style.display = 'none';
+}
