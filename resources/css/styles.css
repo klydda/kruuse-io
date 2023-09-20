@@ -43,9 +43,20 @@ a {
 
 #main-container{
     position: relative;
-    margin-top: 40vh;
-    transition: margin-top 0.3s ease-out;
     z-index: 10;
+    transition: margin-top 0.3s ease-out;
+}
+
+.start {
+    margin-top: 40vh;
+}
+
+.top {
+    margin-top: 2rem;
+}
+
+.top:hover {
+    cursor: pointer;
 }
 
 main {
@@ -72,6 +83,7 @@ ul {
 
 #dev-tool{
     position: absolute;
+    z-index: 10;
     top: 1rem;
     left: 0.5rem;
     display: none;

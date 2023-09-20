@@ -54,13 +54,14 @@ function dotFactory(id, top, left, size){
 function makeDots(num){
     for (let i = 0; i < num; i++){
         let id = i;
-        let top = Math.floor(Math.random() * (windowHeight - 100)); //Generates a random number between 0 - [height of window]
-        let left = Math.floor(Math.random() * (windowWidth - 100)); //Generates a random number between 0 - [width of window]
-        let size = Math.floor((Math.random() * 70) + 20);
-        dots.push(dotFactory(id, top, left, size));
+        let top = Math.floor(Math.random() * (windowHeight - 100)); //Generates a random number between 0 - ([height of window] - 100px)
+        let left = Math.floor(Math.random() * (windowWidth - 100)); //Generates a random number between 0 - ([width of window] - 100px)
+        let size = Math.floor((Math.random() * 70) + 20); //Sets the size to a number between 20px and 90px
+        dots.push(dotFactory(id, top, left, size)); //Creates the dot objects and pushes them to the dots array
     }
 };
 
+//Function that loops through the dots array and draws the dots based on their properties and additional properties in the function
 function drawDots(arr){
     for (let i = 0; i < arr.length; i++){
         dotElements[i] = document.createElement('div');
@@ -72,7 +73,6 @@ function drawDots(arr){
         dotElements[i].style.position = 'absolute';
         dotElements[i].style.top = `${dots[i].top}px`;
         dotElements[i].style.left = `${dots[i].left}px`;
-        //dotElements[i].style.backgroundColor = colorElement(dotElements[i]);
         dotElements[i].style.backgroundColor = 'black';
         dotElements[i].style.width = `${dots[i].size}px`;
         dotElements[i].style.height = `${dots[i].size}px`;
@@ -81,8 +81,8 @@ function drawDots(arr){
     }
 }
 
-makeDots(numOfDots);
-drawDots(dots);
+makeDots(numOfDots); //Make numOfDots and push them to dots array
+drawDots(dots); //Draw the dots of the dots array
 
 //Event listener that calls updateDots on click
 clickTarget.addEventListener('click', updateDots);
@@ -201,11 +201,31 @@ function mousePosToRgb(elem){
 // CODE FOR LOGO MOVEMENT
 // ------------------------
 
+//Moves main-container to top of page
 function moveMainContainer(){
-    mainContainer.style.marginTop = '2rem';
-    // mainContainer.style.top = '2rem';
-    // mainContainer.style.transform = 'none';
+    mainContainer.classList.add('top');
+    mainContainer.classList.remove('start');
 }
+
+//Resets page back to it's original configuration
+function resetPage(){
+    mainContainer.classList.add('start');
+    mainContainer.classList.remove('top');
+    contentContainer.classList.remove('visible');
+    setTimeout(() => {
+        contentContainer.style.display = 'none';
+    },600);
+}
+
+kruuse.addEventListener('mousedown', () => {
+    intervalID = setInterval(() => {
+        linkClickColor();
+    }, 1)
+});
+
+kruuse.addEventListener('mouseup', stopLinkClickColor);
+kruuse.addEventListener('mouseup', resetPage);
+
 
 
 //-------------------------
