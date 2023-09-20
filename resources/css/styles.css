@@ -86,8 +86,8 @@ ul {
     z-index: 10;
     top: 1rem;
     left: 0.5rem;
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
 }
 
 #logo-1 {
@@ -101,6 +101,10 @@ ul {
     color: black;
     margin-right: 1rem;
     margin-bottom: 0.2rem;
+}
+
+#logo-container:hover{
+    cursor: pointer;
 }
 
 #content-container {
