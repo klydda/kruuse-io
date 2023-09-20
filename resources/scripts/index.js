@@ -300,7 +300,7 @@ function contactAppear(){
 
 
 let dotsAnimCounter = 0;
-
+let iteration = 0;
 
 document.addEventListener('mousedown', () => {
     vibrateIntervalID = setInterval(() => {
@@ -312,6 +312,7 @@ document.addEventListener('mousedown', () => {
 document.addEventListener('mouseup', stopDotsAnimation);
 
 function dotVibration(){
+    iteration++;
 
     for (let i = 0; i < dots.length; i++){
         let currentX = parseInt(dotElements[i].style.left, 10);
@@ -323,7 +324,7 @@ function dotVibration(){
         } else if(dotsAnimCounter > 5 && dotsAnimCounter <= 15){
             movement = -1;
         } else {
-            dotsAnimCounter = -5;
+            dotsAnimCounter = -4;
         }
     
         currentX += movement;
@@ -332,18 +333,12 @@ function dotVibration(){
         dotElements[i].style.top = `${currentY}px`;
     }
 
-    for (let i = 0; i < dots.length; i++) {
-        console.log(`Dot ${i} initial position: ${dots[i].top}`);
-        console.log(`Dot ${i} current position: ${dotElements[i].style.top}`);
-        console.log(`Dot ${i} diff: ${dots[i].top - parseInt(dotElements[i].style.top, 10)}`);
-        
-        
-        
-    }
-
-    //Test
-    document.getElementById('interval').innerHTML = dotsAnimCounter;
-    document.getElementById('current-x').innerHTML = currentX;
+    // console.log(`ITERATION: ${iteration}`);
+    // console.log(`Dot ${1} initial position: ${dots[1].top}`);
+    // console.log(`Dot ${1} current position: ${dotElements[1].style.top}`);
+    // console.log(`Dot ${1} diff: ${parseInt(dotElements[1].style.top, 10) - dots[1].top}`);
+    // console.log(`dotsAnimCounter: ${dotsAnimCounter}`);
+    // console.log('------------------');
 }
 
 function stopDotsAnimation(){
