@@ -13,7 +13,7 @@ let windowHeight= window.innerHeight;
 let rgbWidthRatio = windowWidth/256;
 let rgbHeightRatio = windowHeight/256;
 let intervalID;
-let vibrateIntervalID;
+let dotReturnID;
 let mouseX;
 let mouseY;
 
@@ -148,22 +148,58 @@ nav.forEach((id) => {
     navElements.push(document.getElementById(id));
 });
 
-//Event assigment function. Assigns 4 Event Listeners to all elems it's used
-function eventAssignment(elem){
-    elem.addEventListener('mousedown', () => {
-        intervalID = setInterval(() => {
-            linkClickColor();
-        }, 1)
-    });
+//Changes backgroundColor of kruuse and enables dot gravity on mousedown
+kruuse.addEventListener('mousedown', mainContainerMouseDown);
 
-    elem.addEventListener('mouseup', moveMainContainer);
-    elem.addEventListener('mouseup', stopLinkClickColor);
-    elem.addEventListener('mouseout', stopLinkClickColor);
+//Resets page on mouseup (mainContainer placement and content container visibility)
+kruuse.addEventListener('mouseup', resetPage);
+
+//Assigns mousedown and mouseup event to navigation elems
+function eventAssignmentNav(elem){
+    elem.addEventListener('mousedown', mainContainerMouseDown);
+    elem.addEventListener('mouseup', moveMainContainer); 
 }
 
-navElements.forEach(eventAssignment);
+document.addEventListener('mouseup', mainContainerMouseUp);
 
+function mainContainerMouseDown(){
+    clearIntervalID();
+    stopDotReturn();
+    intervalID = setInterval (() => {
+        linkClickColor();
+        dotGravity();
+    }, 10);
+}
 
+function mainContainerMouseUp(){
+    clearIntervalID();
+    dotReturnID = setInterval(() => {
+        dotReturn();
+    });
+}
+
+function stopDotReturn(){
+    clearInterval(dotReturnID);
+}
+
+function clearIntervalID(){
+    clearInterval(intervalID);
+
+    //Resets the color without having to move the mouse
+    //Applies mousePosToRgb on all elements in colorAnimTargets
+    colorAnimTargets.forEach((elem) => {
+        elem.style.color = mousePosToRgb(elem);
+    });
+
+    //Applies mousPosToRgb on all dotElements (bc they are created through js not in HTML)
+    dotElements.forEach((elem) => {
+        elem.style.backgroundColor = mousePosToRgb(elem);
+    });
+}
+
+navElements.forEach(eventAssignmentNav);
+
+//Sets color or backgroundColor of elems to pink
 function linkClickColor(){
     dotElements.forEach((elem) => {
         elem.style.backgroundColor = 'rgb(255, 100, 160)';
@@ -173,11 +209,6 @@ function linkClickColor(){
         elem.style.color = 'rgb(255, 100, 160)';
     })
 }
-
-function stopLinkClickColor(){
-    clearInterval(intervalID);
-}
-
 
 //Function for updating color of colorAnimTargets based on mouseX and mouseY position
 function mousePosToRgb(elem){
@@ -218,17 +249,6 @@ function resetPage(){
         contentContainer.style.display = 'none';
     },600);
 }
-
-kruuse.addEventListener('mousedown', () => {
-    intervalID = setInterval(() => {
-        linkClickColor();
-    }, 1)
-});
-
-kruuse.addEventListener('mouseup', stopLinkClickColor);
-kruuse.addEventListener('mouseup', resetPage);
-
-
 
 //-------------------------
 // CODE FOR CONTENT AREAS
@@ -298,49 +318,85 @@ function contactAppear(){
 // CODE FOR DOTS ANIMATION
 // ------------------------
 
-
-let dotsAnimCounter = 0;
-let iteration = 0;
-
-document.addEventListener('mousedown', () => {
-    vibrateIntervalID = setInterval(() => {
-        dotsAnimCounter++;
-        dotVibration();
-    }, 10)
-});
-
-document.addEventListener('mouseup', stopDotsAnimation);
-
-function dotVibration(){
-    iteration++;
-
+function dotGravity(){
     for (let i = 0; i < dots.length; i++){
         let currentX = parseInt(dotElements[i].style.left, 10);
         let currentY = parseInt(dotElements[i].style.top, 10);
-        let movement = 1;
-    
-        if(dotsAnimCounter <= 5){
-            movement = 1;   
-        } else if(dotsAnimCounter > 5 && dotsAnimCounter <= 15){
-            movement = -1;
+        let movementX = 0;
+        let movementY = 0;
+        let moveSpeedX = 1;
+        let moveSpeedY = 1;
+
+        if (currentX < mouseX){
+            movementX = moveSpeedX;
+        } else if (currentX > mouseX){
+            movementX = moveSpeedX * -1;
         } else {
-            dotsAnimCounter = -4;
+            movementX = 0;
         }
-    
-        currentX += movement;
-        currentY += movement;
+
+        if (currentY < mouseY){
+            movementY = moveSpeedY;
+        } else if (currentY > mouseY){
+            movementY = moveSpeedY * -1;
+        } else {
+            movementY = 0;
+        }
+
+        currentX += movementX;
+        currentY += movementY;
+
         dotElements[i].style.left = `${currentX}px`;
         dotElements[i].style.top = `${currentY}px`;
     }
-
-    // console.log(`ITERATION: ${iteration}`);
-    // console.log(`Dot ${1} initial position: ${dots[1].top}`);
-    // console.log(`Dot ${1} current position: ${dotElements[1].style.top}`);
-    // console.log(`Dot ${1} diff: ${parseInt(dotElements[1].style.top, 10) - dots[1].top}`);
-    // console.log(`dotsAnimCounter: ${dotsAnimCounter}`);
-    // console.log('------------------');
 }
 
-function stopDotsAnimation(){
-    clearInterval(vibrateIntervalID);
+function dotReturn(){
+    clearIntervalID();
+    const hasReturned = [];
+    for (let i = 0; i < dots.length; i++){
+        let currentX = parseInt(dotElements[i].style.left, 10);
+        let currentY = parseInt(dotElements[i].style.top, 10);
+        let movementX = 0;
+        let movementY = 0;
+        let moveSpeedX = 1;
+        let moveSpeedY = 1;
+
+        if (currentX < dots[i].left){
+            movementX = moveSpeedX;
+        } else if (currentX > dots[i].left){
+            movementX = moveSpeedX * -1;
+        } else {
+            movementX = 0;
+        }
+
+        if (currentY < dots[i].top){
+            movementY = moveSpeedY;
+        } else if (currentY > dots[i].top){
+            movementY = moveSpeedY * -1;
+        } else {
+            movementY = 0;
+        }
+
+        currentX += movementX;
+        currentY += movementY;
+
+        dotElements[i].style.left = `${currentX}px`;
+        dotElements[i].style.top = `${currentY}px`;
+
+        if (currentY === dots[i].top && currentX === dots[i].left){
+            hasReturned[i] = true;
+        } else {
+            hasReturned[i] = false;
+        }
+    }
+
+    for (let i = 0; i < dots.length; i++){
+        console.log(`hasReturned[${i}]: ${hasReturned[i]}`);
+    }
+    
+    if (hasReturned.every(Boolean)){
+        clearInterval(dotReturnID);
+    }
 }
+

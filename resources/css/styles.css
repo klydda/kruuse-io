@@ -103,6 +103,10 @@ ul {
     margin-bottom: 0.2rem;
 }
 
+#logo-container:hover{
+    cursor: pointer;
+}
+
 #content-container {
     display: none;
     flex-direction: column;
