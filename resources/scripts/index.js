@@ -359,8 +359,17 @@ function dotReturn(){
         let currentY = parseInt(dotElements[i].style.top, 10);
         let movementX = 0;
         let movementY = 0;
-        let moveSpeedX = 1;
-        let moveSpeedY = 1;
+        let moveSpeedX = 2;
+        let moveSpeedY = 2;
+        let distanceX = Math.abs(currentX - dots[i].left);
+        let distanceY = Math.abs(currentY - dots[i].top);
+
+        if (distanceX <= 10 && distanceY <= 10){
+            dotElements[i].style.left = `${dots[i].left}px`;
+            dotElements[i].style.top = `${dots[i].top}px`;
+            hasReturned[i] = true;
+            continue;
+        }
 
         if (currentX < dots[i].left){
             movementX = moveSpeedX;
@@ -378,17 +387,17 @@ function dotReturn(){
             movementY = 0;
         }
 
-        currentX += movementX;
-        currentY += movementY;
-
-        dotElements[i].style.left = `${currentX}px`;
-        dotElements[i].style.top = `${currentY}px`;
-
         if (currentY === dots[i].top && currentX === dots[i].left){
             hasReturned[i] = true;
         } else {
             hasReturned[i] = false;
         }
+
+        currentX += movementX;
+        currentY += movementY;
+
+        dotElements[i].style.left = `${currentX}px`;
+        dotElements[i].style.top = `${currentY}px`;
     }
 
     for (let i = 0; i < dots.length; i++){
