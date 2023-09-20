@@ -86,8 +86,8 @@ ul {
     z-index: 10;
     top: 1rem;
     left: 0.5rem;
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
 }
 
 #logo-1 {

@@ -2,7 +2,7 @@ const kruuse = document.getElementById('logo-1');
 const logo2 = document.getElementById('logo-2');
 const dots = []; //Array of dot objects
 const dotElements = []; //Array of dotElements as divs
-const numOfDots = 10;
+const numOfDots = 20;
 const nav = ['projects', 'about', 'contact'];
 const navElements = [];
 const mainContainer = document.getElementById('main-container');
@@ -13,6 +13,7 @@ let windowHeight= window.innerHeight;
 let rgbWidthRatio = windowWidth/256;
 let rgbHeightRatio = windowHeight/256;
 let intervalID;
+let vibrateIntervalID;
 let mouseX;
 let mouseY;
 
@@ -58,6 +59,7 @@ function makeDots(num){
         let left = Math.floor(Math.random() * (windowWidth - 100)); //Generates a random number between 0 - ([width of window] - 100px)
         let size = Math.floor((Math.random() * 70) + 20); //Sets the size to a number between 20px and 90px
         dots.push(dotFactory(id, top, left, size)); //Creates the dot objects and pushes them to the dots array
+
     }
 };
 
@@ -290,4 +292,60 @@ function contactAppear(){
     //Sets the other content-areas display properties to none
     projectsSection.style.display = 'none';
     aboutSection.style.display = 'none';
+}
+
+//-------------------------
+// CODE FOR DOTS ANIMATION
+// ------------------------
+
+
+let dotsAnimCounter = 0;
+
+
+document.addEventListener('mousedown', () => {
+    vibrateIntervalID = setInterval(() => {
+        dotsAnimCounter++;
+        dotVibration();
+    }, 10)
+});
+
+document.addEventListener('mouseup', stopDotsAnimation);
+
+function dotVibration(){
+
+    for (let i = 0; i < dots.length; i++){
+        let currentX = parseInt(dotElements[i].style.left, 10);
+        let currentY = parseInt(dotElements[i].style.top, 10);
+        let movement = 1;
+    
+        if(dotsAnimCounter <= 5){
+            movement = 1;   
+        } else if(dotsAnimCounter > 5 && dotsAnimCounter <= 15){
+            movement = -1;
+        } else {
+            dotsAnimCounter = -5;
+        }
+    
+        currentX += movement;
+        currentY += movement;
+        dotElements[i].style.left = `${currentX}px`;
+        dotElements[i].style.top = `${currentY}px`;
+    }
+
+    for (let i = 0; i < dots.length; i++) {
+        console.log(`Dot ${i} initial position: ${dots[i].top}`);
+        console.log(`Dot ${i} current position: ${dotElements[i].style.top}`);
+        console.log(`Dot ${i} diff: ${dots[i].top - parseInt(dotElements[i].style.top, 10)}`);
+        
+        
+        
+    }
+
+    //Test
+    document.getElementById('interval').innerHTML = dotsAnimCounter;
+    document.getElementById('current-x').innerHTML = currentX;
+}
+
+function stopDotsAnimation(){
+    clearInterval(vibrateIntervalID);
 }
