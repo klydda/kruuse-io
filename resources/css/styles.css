@@ -231,3 +231,6 @@ ul {
     border-radius: 1rem;
 }
 
+.section-active {
+    font-weight: bold;
+}

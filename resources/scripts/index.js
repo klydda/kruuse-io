@@ -158,9 +158,24 @@ kruuse.addEventListener('mouseup', resetPage);
 function eventAssignmentNav(elem){
     elem.addEventListener('mousedown', mainContainerMouseDown);
     elem.addEventListener('mouseup', moveMainContainer); 
+    elem.addEventListener('mouseup', clearActive);
+    elem.addEventListener('mouseup', setActive);
 }
 
+navElements.forEach(eventAssignmentNav);
+
 document.addEventListener('mouseup', mainContainerMouseUp);
+
+function clearActive(){
+    navElements.forEach((elem) => {
+        elem.classList.remove('section-active');
+    });
+}
+
+function setActive(event){
+    const eventTarget = event.target;
+    eventTarget.classList.add('section-active');
+}
 
 function mainContainerMouseDown(){
     clearIntervalID();
@@ -196,8 +211,6 @@ function clearIntervalID(){
         elem.style.backgroundColor = mousePosToRgb(elem);
     });
 }
-
-navElements.forEach(eventAssignmentNav);
 
 //Sets color or backgroundColor of elems to pink
 function linkClickColor(){
