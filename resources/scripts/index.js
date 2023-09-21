@@ -2,7 +2,7 @@ const kruuse = document.getElementById('logo-1');
 const logo2 = document.getElementById('logo-2');
 const dots = []; //Array of dot objects
 const dotElements = []; //Array of dotElements as divs
-const numOfDots = 20;
+const numOfDots = 10;
 const nav = ['projects', 'about', 'contact'];
 const navElements = [];
 const mainContainer = document.getElementById('main-container');
@@ -153,6 +153,9 @@ kruuse.addEventListener('mousedown', mainContainerMouseDown);
 
 //Resets page on mouseup (mainContainer placement and content container visibility)
 kruuse.addEventListener('mouseup', resetPage);
+
+//
+kruuse.addEventListener('mouseup', clearActive);
 
 //Assigns mousedown and mouseup event to navigation elems
 function eventAssignmentNav(elem){
