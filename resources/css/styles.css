@@ -86,8 +86,8 @@ ul {
     z-index: 10;
     top: 1rem;
     left: 0.5rem;
-    /* display: none; */
-    display: block;
+    display: none;
+    /* display: block; */
 }
 
 #logo-1 {
@@ -184,3 +184,53 @@ ul {
     width: 30%;
 }
 
+
+
+#projects-section div {
+    /* border: solid 1px white; */
+
+}
+
+.projects-card {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 2rem 5rem;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    align-items: start;
+    margin: 1rem 0;
+    /* background-color: #ABCBC8; */
+}
+
+.projects-text {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.projects-header{
+    grid-column: 2 / span1 ;
+    grid-row: 1 / span 1;
+    font-weight: bold;
+}
+
+.projects-img {
+    display: flex;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    height: 100%;
+    width: 100%;
+    justify-self: center;
+    justify-content: center;
+}
+
+.projects-image {
+    object-fit: contain;
+    height: 100%;
+    width: auto;
+    border-radius: 1rem;
+}
+
+.section-active {
+    font-weight: bold;
+}
