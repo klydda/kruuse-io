@@ -425,3 +425,24 @@ function dotReturn(){
     }
 }
 
+
+//-----------------------------
+// CODE FOR DOTS RESPONSIVENESS
+// ----------------------------
+
+
+window.addEventListener('resize', fitDotsToWindowSize);
+
+
+// Checks if a dot is within 100px from the edge of the window and moves it to 100px from the edge
+function fitDotsToWindowSize(){
+
+    for (let i = 0; i < dotElements.length; i++){
+        const maxWidth = windowWidth - 100;
+        let currentDotLeft = parseInt(dotElements[i].style.left, 10);
+        if(currentDotLeft >= maxWidth){
+            dotElements[i].style.left = `${maxWidth}px`;
+        }
+
+    }
+}
