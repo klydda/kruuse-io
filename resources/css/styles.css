@@ -225,7 +225,6 @@ ul {
 }
 
 .projects-image {
-    object-fit: contain;
     height: 100%;
     width: auto;
     border-radius: 1rem;
@@ -260,6 +259,26 @@ ul {
     }
 }
 
+@media only screen and (max-width: 700px){
+    .projects-image {
+        height: 96px;
+    }
+
+    #debricked {
+        grid-template-columns: 1fr 5fr;
+        grid-template-rows: 2rem 7rem;
+    }
+
+    #debricked .projects-img {
+        align-self: center;
+    }
+
+    .projects-card, #debricked {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1rem 7rem;
+    }
+}
+
 @media only screen and (max-width: 600px){
     #content-container {
         width: 80%;
@@ -279,5 +298,60 @@ ul {
 @media only screen and (max-width: 450px){
     h1 {
         font-size: 3rem;
+    }
+
+    #logo2 {
+        margin-right: 0.7rem;
+    }
+
+    .projects-img {
+        display: none;
+    }
+
+    .small-hidden {
+        height: 32px;
+        width: 32px;
+        border-radius: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    .projects-header{
+        display: flex;
+        align-items: center;
+    }
+
+    #tbd {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2rem 2rem;
+    }
+
+    #debricked {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2rem 6rem;
+    }
+    
+    #content-container {
+        padding: 1rem;
+    }
+}
+
+@media only screen and (max-width: 360px){
+    #debricked {
+        grid-template-columns: 1fr;
+        grid-template-rows: 2rem 8rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #logo-2 {
+        margin-right: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 451px){
+    .small-hidden {
+        display: none;
     }
 }
