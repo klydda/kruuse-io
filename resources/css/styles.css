@@ -234,3 +234,40 @@ ul {
 .section-active {
     font-weight: bold;
 }
+
+@media only screen and (max-width: 1000px){
+    #content-container {
+        width: 80%;
+    }
+
+    #about-section{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #picture-of-me {
+        margin-bottom: 1rem;
+        min-width: 200px;
+    }
+
+    #about-me-text {
+        width: 80%;
+        margin-left: 0;
+    }
+
+    .center {
+        align-self: center;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    #content-container {
+        width: 80%;
+    }
+
+    #about-me-text {
+        width: 100%;
+        margin-left: 0;
+    }
+
+}
