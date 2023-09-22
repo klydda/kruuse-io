@@ -8,6 +8,10 @@ const navElements = [];
 const mainContainer = document.getElementById('main-container');
 const clickTarget = document.getElementById('click-target');
 
+const startingR = Math.floor(Math.random()*255);
+const startingG = Math.floor(Math.random()*255);
+const startingB = Math.floor(Math.random()*255);
+
 let windowWidth = window.innerWidth;
 let windowHeight= window.innerHeight;
 let rgbWidthRatio = windowWidth/256;
@@ -75,11 +79,12 @@ function drawDots(arr){
         dotElements[i].style.position = 'absolute';
         dotElements[i].style.top = `${dots[i].top}px`;
         dotElements[i].style.left = `${dots[i].left}px`;
-        dotElements[i].style.backgroundColor = 'black';
         dotElements[i].style.width = `${dots[i].size}px`;
         dotElements[i].style.height = `${dots[i].size}px`;
         dotElements[i].style.borderRadius = `${dots[i].size/2}px`;
         dotElements[i].style.zIndex = '1';
+
+        randomColor(dotElements[i]);
     }
 }
 
@@ -243,6 +248,22 @@ function mousePosToRgb(elem){
         default:
             return `rgb(${rgbWidth}, ${rgbHeight}, 56)`;            
     }
+}
+
+//Sets elem (dots) to starting RGB value
+function randomColor(elem){
+    if(windowWidth <= 1000){
+        elem.style.backgroundColor = `rgb(${startingR}, ${startingG}, ${startingB})`;
+    } else {
+        elem.style.backgroundColor = 'black';
+    }
+}
+
+//Sets logo2 to starting RGB value
+if(windowWidth <= 1000){
+    logo2.style.color = `rgb(${startingR}, ${startingG}, ${startingB})`
+} else {
+    logo2.style.color = 'black';
 }
 
 
@@ -414,10 +435,6 @@ function dotReturn(){
 
         dotElements[i].style.left = `${currentX}px`;
         dotElements[i].style.top = `${currentY}px`;
-    }
-
-    for (let i = 0; i < dots.length; i++){
-        console.log(`hasReturned[${i}]: ${hasReturned[i]}`);
     }
     
     if (hasReturned.every(Boolean)){
